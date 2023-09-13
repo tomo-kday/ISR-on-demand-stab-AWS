@@ -1,4 +1,5 @@
-import styles from '../styles/Home.module.scss';
+import Link from "next/link";
+import styles from "../styles/Home.module.scss";
 
 export default function Explanation() {
   return (
@@ -31,14 +32,14 @@ export default function Explanation() {
           </a>
           ` repo change (get created, commented on, deleted, etc), GitHub fires
           off a webhook and the impacted pages get re-rendered and pushed to the
-          edge, on demand. The webhook on the Next.js app side executes a new{' '}
+          edge, on demand. The webhook on the Next.js app side executes a new{" "}
           <a
             href="https://nextjs.org/docs/app/building-your-application/data-fetching/revalidating#on-demand-revalidation"
             target="_blank"
             rel="noreferrer noopener"
           >
             <code>`res.revalidate()`</code>
-          </a>{' '}
+          </a>{" "}
           API call.
         </p>
       </details>
@@ -49,7 +50,7 @@ export default function Explanation() {
         </summary>
 
         <p>
-          Unlike <code>`revalidate`</code>{' '}
+          Unlike <code>`revalidate`</code>{" "}
           <a
             href="https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration"
             target="_blank"
@@ -57,7 +58,7 @@ export default function Explanation() {
           >
             with a time interval
           </a>
-          , a Serverless Function is invoked{' '}
+          , a Serverless Function is invoked{" "}
           <em>_only when content changes_</em>, making it faster for the user
           (they see changes immediately), and more cost-efficient for owners.
         </p>
@@ -65,22 +66,25 @@ export default function Explanation() {
 
       <p>
         <em>
-          _💡 Try{' '}
+          _💡 Try{" "}
           <a
             href="https://github.com/leerob/on-demand-isr/issues/new"
             target="_blank"
             rel="noreferrer"
           >
             creating a new issue
-          </a>{' '}
+          </a>{" "}
           or commenting, and refresh this page to see the regenerated one!_
-        </em>{' '}
+        </em>{" "}
         <br />
         <span className={styles.explanation_notes}>
           Pages take about <b>*300ms~*</b> to fully propagate to the global
           Vercel Edge Network after the regeneration completes.
         </span>
       </p>
+      <Link href="/">
+        <h1>Home</h1>
+      </Link>
     </div>
   );
 }
