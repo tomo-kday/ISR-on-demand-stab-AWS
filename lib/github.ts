@@ -24,7 +24,6 @@ function getGitHubJWT() {
   // console.log("🚀 ~ file: github.ts:18 ~ getGitHubJWT ~ process.env.GITHUB_APP_ID || !process.env.GITHUB_APP_PK_PEM:", process.env.GITHUB_APP_ID, process.env.GITHUB_APP_PK_PEM)
 
   const privateKey = fs.readFileSync('isr-on-demand-stab.2023-09-12.private-key.pem', 'utf8');
-  console.log("🚀 ~ file: github.ts:27 ~ getGitHubJWT ~ privateKey:", privateKey)
 
   return jwt.sign(
     {
