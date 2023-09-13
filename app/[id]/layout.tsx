@@ -1,7 +1,8 @@
-import styles from '../../styles/Home.module.scss';
-import Link from 'next/link';
-import { GitHubIcon, LinkIcon } from '../icons';
-import Explanation from '../explanation';
+import styles from "../../styles/Home.module.scss";
+import Link from "next/link";
+import { GitHubIcon, LinkIcon } from "../icons";
+import Explanation from "../explanation";
+import { baseURL } from "../../config";
 
 export default async function IssueLayout({
   children,
@@ -16,17 +17,13 @@ export default async function IssueLayout({
 
       <div className={styles.repo}>
         <div className={styles.repo_title}>
-          <GitHubIcon />{' '}
+          <GitHubIcon />
+          <a href={baseURL} target="_blank" rel="noreferrer">
+            tomo-kday
+          </a>{" "}
+          / <Link href="/">on-demand-isr</Link> /{" "}
           <a
-            href="https://github.com/leerob/on-demand-isr"
-            target="_blank"
-            rel="noreferrer"
-          >
-            leerob
-          </a>{' '}
-          / <Link href="/">on-demand-isr</Link> /{' '}
-          <a
-            href={`https://github.com/leerob/on-demand-isr/issues/${params.id}`}
+            href={`${baseURL}/issues/${params.id}`}
             target="_blank"
             rel="noreferrer"
           >
@@ -35,11 +32,11 @@ export default async function IssueLayout({
         </div>
         <div className={styles.issue_comments}>
           <a
-            href={`https://github.com/leerob/on-demand-isr/issues/${params.id}`}
+            href={`${baseURL}/issues/${params.id}`}
             target="_blank"
             rel="noreferrer"
           >
-            <LinkIcon /> {'Open in GitHub'}
+            <LinkIcon /> {"Open in GitHub"}
           </a>
         </div>
       </div>

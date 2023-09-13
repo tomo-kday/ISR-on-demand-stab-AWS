@@ -1,6 +1,7 @@
 import 'server-only';
 import jwt from 'jsonwebtoken';
 import { notFound } from 'next/navigation';
+import fs from 'fs';
 
 let accessToken;
 
@@ -20,13 +21,19 @@ function getGitHubJWT() {
     );
   }
 
+  // console.log("🚀 ~ file: github.ts:18 ~ getGitHubJWT ~ process.env.GITHUB_APP_ID || !process.env.GITHUB_APP_PK_PEM:", process.env.GITHUB_APP_ID, process.env.GITHUB_APP_PK_PEM)
+
+  const privateKey = fs.readFileSync('isr-on-demand-stab.2023-09-12.private-key.pem', 'utf8');
+  console.log("🚀 ~ file: github.ts:27 ~ getGitHubJWT ~ privateKey:", privateKey)
+
   return jwt.sign(
     {
       iat: Math.floor(Date.now() / 1000) - 60,
       iss: process.env.GITHUB_APP_ID,
       exp: Math.floor(Date.now() / 1000) + 60 * 10, // 10 minutes is the max
     },
-    process.env.GITHUB_APP_PK_PEM,
+    // process.env.GITHUB_APP_PK_PEM,
+    privateKey,
     {
       algorithm: 'RS256',
     }
@@ -35,7 +42,7 @@ function getGitHubJWT() {
 
 async function getInstallation(token: string) {
   const installations = await fetchGitHub('/app/installations', token);
-  return installations.find((i: any) => i.account.login === 'leerob');
+  return installations.find((i: any) => i.account.login === 'tomo-kday');
 }
 
 function createGitHubRequest(path: string, token: string, opts: any = {}) {
@@ -82,12 +89,12 @@ export async function setAccessToken() {
 
 export async function fetchIssueAndRepoData() {
   const [issues, repoDetails] = await Promise.all([
-    fetchGitHub('/repos/leerob/on-demand-isr/issues', accessToken),
-    fetchGitHub('/repos/leerob/on-demand-isr', accessToken),
+    fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS/issues', accessToken),
+    fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS', accessToken),
   ]);
 
   console.log('[Next.js] Fetching data for /');
-  console.log(`[Next.js] Issues: ${issues.length}`);
+  console.log(`🔥🔥🔥${new Date().toLocaleString()} [Next.js] Issues: ${issues.length}`);
 
   return {
     issues,
@@ -98,16 +105,16 @@ export async function fetchIssueAndRepoData() {
 
 export async function fetchIssuePageData(id: string) {
   const [issue, comments, repoDetails] = await Promise.all([
-    fetchGitHub(`/repos/leerob/on-demand-isr/issues/${id}`, accessToken),
+    fetchGitHub(`/repos/tomo-kday/ISR-on-demand-stab-AWS/issues/${id}`, accessToken),
     fetchGitHub(
-      `/repos/leerob/on-demand-isr/issues/${id}/comments`,
+      `/repos/tomo-kday/ISR-on-demand-stab-AWS/issues/${id}/comments`,
       accessToken
     ),
-    fetchGitHub('/repos/leerob/on-demand-isr', accessToken),
+    fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS/issues', accessToken),
   ]);
 
   console.log(`[Next.js] Fetching data for /${id}`);
-  console.log(`[Next.js] [${id}] Comments: ${comments.length}`);
+  console.log(`🔥🔥🔥${new Date().toLocaleString()}  [Next.js] [${id}] Comments: ${comments.length}`);
 
   if (issue.message === 'Not Found') {
     notFound();

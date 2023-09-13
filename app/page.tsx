@@ -1,15 +1,16 @@
-import styles from '../styles/Home.module.scss';
-import Link from 'next/link';
+import styles from "../styles/Home.module.scss";
+import Link from "next/link";
 import {
   CommentIcon,
   IssueIcon,
   StarIcon,
   ForkIcon,
   GitHubIcon,
-} from './icons';
-import { fetchIssueAndRepoData } from '../lib/github';
-import Explanation from './explanation';
-import getFormattedTime from './time-ago';
+} from "./icons";
+import { fetchIssueAndRepoData } from "../lib/github";
+import Explanation from "./explanation";
+import getFormattedTime from "./time-ago";
+import { baseURL } from "../config";
 
 export default async function Page() {
   const { issues, forks_count, stargazers_count } =
@@ -20,29 +21,17 @@ export default async function Page() {
       <Explanation />
       <div className={styles.repo}>
         <div className={styles.repo_title}>
-          <GitHubIcon />{' '}
-          <a
-            href="https://github.com/leerob/on-demand-isr"
-            target="_blank"
-            rel="noreferrer"
-          >
-            leerob
-          </a>{' '}
+          <GitHubIcon />{" "}
+          <a href={baseURL} target="_blank" rel="noreferrer">
+            tomo-kday
+          </a>
           / <Link href="/">on-demand-isr</Link>
         </div>
         <div className={styles.forks_stars}>
-          <a
-            href="https://github.com/leerob/on-demand-isr/fork"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={`${baseURL}/fork`} target="_blank" rel="noreferrer">
             <ForkIcon /> {new Number(forks_count).toLocaleString()}
           </a>
-          <a
-            href="https://github.com/leerob/on-demand-isr"
-            target="_blank"
-            rel="noreferrer"
-          >
+          <a href={baseURL} target="_blank" rel="noreferrer">
             <StarIcon /> {new Number(stargazers_count).toLocaleString()}
           </a>
         </div>
@@ -58,7 +47,7 @@ export default async function Page() {
             <div>
               <div className={styles.issue_title}>{issue.title}</div>
               <div className={styles.issue_desc}>
-                #{issue.number} opened {getFormattedTime(issue.created_at)} by{' '}
+                #{issue.number} opened {getFormattedTime(issue.created_at)}
                 {issue.user.login}
               </div>
             </div>

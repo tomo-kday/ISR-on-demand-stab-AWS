@@ -1,0 +1,1 @@
+export const baseURL =  "https://github.com/tomo-kday/ISR-on-demand-stab-AWS"
