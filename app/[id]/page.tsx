@@ -96,9 +96,9 @@ export default async function IssuePage({
               className={styles.comment_body}
             />
           </div>
-          <Link href="/">back to home Test</Link>
         </a>
       ))}
+      <Link href="/">back to home Test</Link>
     </div>
   );
 }
