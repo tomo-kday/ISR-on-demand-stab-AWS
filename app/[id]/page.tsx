@@ -1,12 +1,13 @@
-import styles from '../../styles/Home.module.scss';
-import Image from 'next/image';
-import { marked } from 'marked';
-import hljs from 'highlight.js';
-import { fetchIssuePageData } from '../../lib/github';
-import avatar from '../avatar.png';
-import getFormattedTime from '../time-ago';
+import styles from "../../styles/Home.module.scss";
+import Image from "next/image";
+import { marked } from "marked";
+import hljs from "highlight.js";
+import { fetchIssuePageData } from "../../lib/github";
+import avatar from "../avatar.png";
+import getFormattedTime from "../time-ago";
+import Link from "next/link";
 
-export const dynamic = 'force-static',
+export const dynamic = "force-static",
   dynamicParams = true;
 
 export function generateStaticParams() {
@@ -54,13 +55,13 @@ export default async function IssuePage({
         </div>
         <div className={styles.comment_div}>
           <div className={styles.comment_timestamp}>
-            <b>{issue.user.login}</b> commented{' '}
+            <b>{issue.user.login}</b> commented{" "}
             {getFormattedTime(issue.created_at)}
           </div>
           <div
             dangerouslySetInnerHTML={{
               __html:
-                markdownToHtml(issue.body) || '<i>No description provided.</i>',
+                markdownToHtml(issue.body) || "<i>No description provided.</i>",
             }}
             className={styles.comment_body}
           />
@@ -85,7 +86,7 @@ export default async function IssuePage({
           </div>
           <div className={styles.comment_div}>
             <div className={styles.comment_timestamp}>
-              <b>{comment.user.login}</b> commented{' '}
+              <b>{comment.user.login}</b> commented{" "}
               {getFormattedTime(comment.created_at)}
             </div>
             <div
@@ -95,6 +96,7 @@ export default async function IssuePage({
               className={styles.comment_body}
             />
           </div>
+          <Link href="/">back to home Test</Link>
         </a>
       ))}
     </div>
