@@ -6,6 +6,7 @@ import { fetchIssuePageData } from "../../lib/github";
 import avatar from "../avatar.png";
 import getFormattedTime from "../time-ago";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const dynamic = "force-static",
   dynamicParams = true;
@@ -34,6 +35,8 @@ export default async function IssuePage({
   params: { id: string };
 }) {
   const { issue, comments } = await fetchIssuePageData(params.id);
+
+  const router = useRouter();
 
   return (
     <div className={styles.comments}>
@@ -98,7 +101,10 @@ export default async function IssuePage({
           </div>
         </a>
       ))}
-      <Link href="/">back to home Test</Link>
+
+      <button type="button" onClick={() => router.push("/")}>
+        Home
+      </button>
     </div>
   );
 }
