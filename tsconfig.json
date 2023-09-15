@@ -31,7 +31,7 @@
     "**/*.tsx",
     "lib/github.ts",
     ".next/types/**/*.ts"
-, "app/api/revalidate/route.js"  ],
+  ],
   "exclude": [
     "node_modules"
   ]
