@@ -38,8 +38,8 @@ export default async function handleWebhook(req, res) {
     // comment created or edited
     // console.log('⚡️ ⚡️ ⚡️ [Next.js] Revalidating /');
     console.log();   
-    // '/' is the path of the page that needs to be revalidated. In this case, it's the root path of the website.
-    // await res.revalidate('/');
+    // '/' is the path of the page that needs to be revalidated. In this case, it's the root path of the website. Without this, the data on landing stays stale.
+    await res.revalidate('/');
     // revalidatePath(`/`); 
     if (issueNumber) {
       // console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
