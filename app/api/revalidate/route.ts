@@ -3,12 +3,12 @@ import { revalidatePath } from 'next/cache'
  
 export async function POST(req: NextRequest) {
   console.log("🚀 ~ file: route.ts:6 ~ POST ~  request.nextUrl.searchParams:",  req.nextUrl)
-  const path = req.nextUrl.searchParams.get('path')
-   console.log("🚀 ~ file: route.ts:7 ~ POST ~ path:", path)
+  // const path = req.nextUrl.searchParams.get('path')
+  //  console.log("🚀 ~ file: route.ts:7 ~ POST ~ path:", path)
    
-  if (!path) {
-    return NextResponse.json({ message: 'Missing path param' }, { status: 400 })
-  }
+  // if (!path) {
+  //   return NextResponse.json({ message: 'Missing path param' }, { status: 400 })
+  // }
  
    // verify the webhook signature request against the
   // unmodified, unparsed body
@@ -39,11 +39,13 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  const issueNumber = jsonBody.issue?.number;
+
     console.log('[Next.js] Revalidating /');
-    console.log(`[Next.js] Revalidating /${path}`);
+    console.log(`[Next.js] Revalidating /${issueNumber}`);
     // const issueNumber = jsonBody.issue?.number;
    
-    revalidatePath(path)
+    revalidatePath(issueNumber)
    
     return NextResponse.json({ revalidated: true, now: Date.now() })
   
