@@ -1,15 +1,14 @@
-import { NextResponse } from 'next/server'
-import { revalidatePath } from 'next/cache'
- 
-export async function POST(req) {
+import { createHmac } from 'crypto';
+import { revalidatePath } from 'next/cache';
+
+export default async function handleWebhook(req, res) {
   console.log("🚀 ~ file: revalidate.js:4 ~ handleWebhook ~ req:", req.body)
   // verify the webhook signature request against the
   // unmodified, unparsed body
   const body = await getRawBody(req);
   if (!body) {
-    return NextResponse.json({ message: 'Bad request (no body)' }, { status: 400 })    
-    // res.status(400).send('Bad request (no body)');
-    // return;
+    res.status(400).send('Bad request (no body)');
+    return;
   }
 
   const jsonBody = JSON.parse(body );
@@ -47,11 +46,10 @@ export async function POST(req) {
       // await res.revalidate(`/${issueNumber}`);      
       revalidatePath(`/id/${issueNumber}`);    
     }
-    return NextResponse.json({ message: 'Success' }, { status: 200 })    
-    // return res.status(200).send('Success!');
+
+    return res.status(200).send('Success!');
   } else {
-    return NextResponse.json({ message: 'Forbidden' }, { status: 403 })   
-    // return res.status(403).send('Forbidden');
+    return res.status(403).send('Forbidden');
   }
 }
 
