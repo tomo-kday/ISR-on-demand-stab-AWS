@@ -35,9 +35,9 @@ export default async function handleWebhook(req, res) {
 
     // issue opened or edited
     // comment created or edited
-    console.log('⚡️ ⚡️ ⚡️ [Next.js] Revalidating /');
+    // console.log('⚡️ ⚡️ ⚡️ [Next.js] Revalidating /');
     console.log();
-    await res.revalidate('/');
+    // await res.revalidate('/');
     if (issueNumber) {
       console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
       await res.revalidate(`/${issueNumber}`);
