@@ -42,7 +42,7 @@ export default async function handleWebhook(req, res) {
     await res.revalidate('/');
     if (issueNumber) {
       console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
-      // await res.revalidate(`/${issueNumber}`);      
+      await res.revalidate(`/${issueNumber}`);      
       // revalidatePath(`/${issueNumber}`);    
     }
 
