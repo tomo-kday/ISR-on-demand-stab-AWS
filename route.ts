@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
+import { IncomingMessage } from 'http';
  
 export async function POST(req: NextRequest) {
   console.log("🚀 ~ file: route.ts:6 ~ POST ~  request.nextUrl.searchParams:",  req.nextUrl)
@@ -65,7 +66,7 @@ export async function POST(req: NextRequest) {
   // }
 }
 
-function getRawBody(req) {
+function getRawBody(req:IncomingMessage) {
   return new Promise((resolve, reject) => {
     let bodyChunks:Uint8Array[] = [];
     req.on('end', () => {
