@@ -11,7 +11,7 @@ export default async function handleWebhook(req, res) {
     return;
   }
 
-  const jsonBody = JSON.parse(body);
+  const jsonBody = JSON.parse(body as any);
 
   // compute our signature from the raw body
   const secret = process.env.GITHUB_WEBHOOK_SECRET;
