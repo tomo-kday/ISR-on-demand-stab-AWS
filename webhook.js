@@ -15,6 +15,7 @@ export default async function handleWebhook(req, res) {
   const secret = process.env.GITHUB_WEBHOOK_SECRET;
   const signature = req.headers['x-hub-signature-256'];
   const computedSignature =
+    // @ts-ignore
     'sha256=' + createHmac('sha256', secret).update(body).digest('hex');
 
   if (computedSignature === signature) {
