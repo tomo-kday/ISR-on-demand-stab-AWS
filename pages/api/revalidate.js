@@ -1,5 +1,5 @@
 import { createHmac } from 'crypto';
-// import { revalidatePath } from 'next/cache';
+import { revalidatePath } from 'next/cache';
 
 export default async function handleWebhook(req, res) {
   console.log("🚀 ~ file: revalidate.js:4 ~ handleWebhook ~ req:", req.body)
@@ -37,13 +37,14 @@ export default async function handleWebhook(req, res) {
     // issue opened or edited
     // comment created or edited
     console.log('⚡️ ⚡️ ⚡️ [Next.js] Revalidating /');
-    console.log();
-    // // how does it work under the hood?
-    await res.revalidate('/');
+    console.log();   
+    // '/' is the path of the page that needs to be revalidated. In this case, it's the root path of the website.
+    // await res.revalidate('/');
+    revalidatePath(`/`); 
     if (issueNumber) {
-      console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
-      await res.revalidate(`/${issueNumber}`);      
-      // revalidatePath(`/${issueNumber}`);    
+      // console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
+      // await res.revalidate(`/${issueNumber}`);      
+      revalidatePath(`/id/${issueNumber}`);    
     }
 
     return res.status(200).send('Success!');
