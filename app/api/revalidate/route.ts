@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
  
 export async function POST(req: NextRequest) {
-  console.log("🚀 ~ file: route.ts:6 ~ POST ~  request.nextUrl.searchParams:",  req.nextUrl.searchParams)
+  console.log("🚀 ~ file: route.ts:6 ~ POST ~  request.nextUrl.searchParams:",  req.nextUrl)
   const path = req.nextUrl.searchParams.get('path')
+   console.log("🚀 ~ file: route.ts:7 ~ POST ~ path:", path)
    
   if (!path) {
     return NextResponse.json({ message: 'Missing path param' }, { status: 400 })
@@ -17,6 +18,7 @@ export async function POST(req: NextRequest) {
   }
 
   const jsonBody = JSON.parse(body as any);
+  console.log("🚀 ~ file: route.ts:21 ~ POST ~ jsonBody:", jsonBody)
 
   // compute our signature from the raw body
   const secret = process.env.GITHUB_WEBHOOK_SECRET;
@@ -37,6 +39,8 @@ export async function POST(req: NextRequest) {
     );
   }
 
+    console.log('[Next.js] Revalidating /');
+    console.log(`[Next.js] Revalidating /${path}`);
     // const issueNumber = jsonBody.issue?.number;
    
     revalidatePath(path)
