@@ -15,7 +15,7 @@ import { baseURL } from "../config";
 export default async function Page() {
   const { issues, forks_count, stargazers_count } =
     await fetchIssueAndRepoData();
-
+  console.log("RSC here 🧨 🧨 🧨");
   return (
     <main className={styles.main}>
       <Explanation />

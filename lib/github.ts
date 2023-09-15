@@ -92,7 +92,8 @@ export async function fetchIssueAndRepoData() {
     fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS', accessToken),
   ]);
 
-  console.log('[Next.js] Fetching data for /');
+  console.log("🚀 ~ file: github.ts:90 ~ fetchIssueAndRepoData ~ fetchIssueAndRepoData:")
+  console.log('[Next.js] Fetching data for all the issues');
   console.log(`🔥🔥🔥${new Date().toLocaleString()} [Next.js] Issues: ${issues.length}`);
 
   return {
@@ -103,6 +104,7 @@ export async function fetchIssueAndRepoData() {
 }
 
 export async function fetchIssuePageData(id: string) {
+ 
   const [issue, comments, repoDetails] = await Promise.all([
     fetchGitHub(`/repos/tomo-kday/ISR-on-demand-stab-AWS/issues/${id}`, accessToken),
     fetchGitHub(
@@ -111,7 +113,7 @@ export async function fetchIssuePageData(id: string) {
     ),
     fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS/issues', accessToken),
   ]);
-
+  console.log("🚀 ~ file: github.ts:107 ~ fetchIssuePageData ~ fetchIssuePageData:")
   console.log(`[Next.js] Fetching data for /${id}`);
   console.log(`🔥🔥🔥${new Date().toLocaleString()}  [Next.js] [${id}] Comments: ${comments.length}`);
 
