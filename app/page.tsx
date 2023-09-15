@@ -59,6 +59,7 @@ export default async function Page() {
           </Link>
         ))}
       </div>
+      <p>Test 🧨 🧨 🧨 🧨</p>
     </main>
   );
 }
