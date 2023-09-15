@@ -31,6 +31,7 @@ export default async function handleWebhook(req, res) {
     );
 
     const issueNumber = jsonBody.issue?.number;
+    console.log("🚀 ~ file: revalidate.js:34 ~ handleWebhook ~ issueNumber:", issueNumber)
 
     // issue opened or edited
     // comment created or edited
