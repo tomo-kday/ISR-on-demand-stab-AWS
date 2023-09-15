@@ -1,6 +1,7 @@
 import { createHmac } from 'crypto';
 
 export default async function handleWebhook(req, res) {
+  console.log("🚀 ~ file: revalidate.js:4 ~ handleWebhook ~ req:", req.body)
   // verify the webhook signature request against the
   // unmodified, unparsed body
   const body = await getRawBody(req);
