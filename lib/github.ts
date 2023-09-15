@@ -115,6 +115,7 @@ export async function fetchIssuePageData(id: string) {
     ),
     fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS/issues', accessToken),
   ]);
+  console.log("test 🧨 🧨 🧨 🧨");
   console.log("🚀 ~ file: github.ts:107 ~ fetchIssuePageData ~ fetchIssuePageData:")
   console.log()
   console.log(`[Next.js] Fetching data for /${id}`);
