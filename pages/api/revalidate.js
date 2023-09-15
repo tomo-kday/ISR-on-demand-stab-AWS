@@ -40,7 +40,7 @@ export default async function handleWebhook(req, res) {
     console.log();   
     // '/' is the path of the page that needs to be revalidated. In this case, it's the root path of the website.
     // await res.revalidate('/');
-    revalidatePath(`/`); 
+    // revalidatePath(`/`); 
     if (issueNumber) {
       // console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
       await res.revalidate(`/${issueNumber}`);      
