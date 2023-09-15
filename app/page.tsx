@@ -11,6 +11,7 @@ import { fetchIssueAndRepoData } from "../lib/github";
 import Explanation from "./explanation";
 import getFormattedTime from "./time-ago";
 import { baseURL } from "../config";
+import SSGComponent from "../components/ssg-component";
 
 export default async function Page() {
   const { issues, forks_count, stargazers_count } =
@@ -60,6 +61,7 @@ export default async function Page() {
         ))}
       </div>
       <p>Test 🧨 🧨 🧨 🧨</p>
+      <SSGComponent />
     </main>
   );
 }
