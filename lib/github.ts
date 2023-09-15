@@ -93,7 +93,9 @@ export async function fetchIssueAndRepoData() {
   ]);
 
   console.log("🚀 ~ file: github.ts:90 ~ fetchIssueAndRepoData ~ fetchIssueAndRepoData:")
+  console.log()
   console.log('[Next.js] Fetching data for all the issues');
+  console.log()
   console.log(`🔥🔥🔥${new Date().toLocaleString()} [Next.js] Issues: ${issues.length}`);
 
   return {
@@ -114,7 +116,9 @@ export async function fetchIssuePageData(id: string) {
     fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS/issues', accessToken),
   ]);
   console.log("🚀 ~ file: github.ts:107 ~ fetchIssuePageData ~ fetchIssuePageData:")
+  console.log()
   console.log(`[Next.js] Fetching data for /${id}`);
+  console.log()
   console.log(`🔥🔥🔥${new Date().toLocaleString()}  [Next.js] [${id}] Comments: ${comments.length}`);
 
   if (issue.message === 'Not Found') {
