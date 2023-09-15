@@ -1,4 +1,5 @@
 import { createHmac } from 'crypto';
+import { revalidatePath } from 'next/cache';
 
 export default async function handleWebhook(req, res) {
   console.log("🚀 ~ file: revalidate.js:4 ~ handleWebhook ~ req:", req.body)
@@ -40,7 +41,8 @@ export default async function handleWebhook(req, res) {
     // await res.revalidate('/');
     if (issueNumber) {
       console.log(`⚡️ ⚡️ ⚡️ [Next.js] Revalidating /${issueNumber}`);
-      await res.revalidate(`/${issueNumber}`);
+      // await res.revalidate(`/${issueNumber}`);      
+      revalidatePath(`/${issueNumber}`);    
     }
 
     return res.status(200).send('Success!');
