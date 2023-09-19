@@ -72,7 +72,7 @@ const SSGComponent = async () => {
         <div key={i}>
           <p>ASK Reddit Title: {val.data.title}</p>
           <Link href={val.data.url}>{val.data.url}</Link>
-          <h2>{convertUTCJapanTime(val.data.created_utc)}</h2>
+          <h2>Created at: {convertUTCJapanTime(val.data.created_utc)}</h2>
         </div>
       ))}
       <Link href="https://www.reddit.com/r/AskReddit/new.json?limit=3">
