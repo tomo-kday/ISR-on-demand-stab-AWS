@@ -15,6 +15,7 @@ async function getAccessToken(installationId: number, token: string) {
 }
 
 function getGitHubJWT() {
+  console.log(process.env.GITHUB_APP_ID)
   if (!process.env.GITHUB_APP_ID || !process.env.GITHUB_APP_PK_PEM) {
     throw new Error(
       'GITHUB_APP_ID and GITHUB_APP_PK_PEM must be defined in .env.local'
@@ -87,6 +88,8 @@ export async function setAccessToken() {
 }
 
 export async function fetchIssueAndRepoData() {
+
+  console.log("🚀 ~ file: github.ts:92 ~ fetchIssueAndRepoData ~ process.env.NODE_ENV:", process.env.NODE_ENV)
   const [issues, repoDetails] = await Promise.all([
     fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS/issues', accessToken),
     fetchGitHub('/repos/tomo-kday/ISR-on-demand-stab-AWS', accessToken),
