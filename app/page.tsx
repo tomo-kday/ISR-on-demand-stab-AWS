@@ -12,6 +12,8 @@ import Explanation from "./explanation";
 import getFormattedTime from "./time-ago";
 import { baseURL } from "../config";
 import SSGComponent from "../components/ssg-component";
+import SSRComponent from "../components/ssr-component";
+import { Suspense } from 'react'
 
 export default async function Page() {
   const { issues, forks_count, stargazers_count } =
@@ -62,6 +64,11 @@ export default async function Page() {
       </div>
       <p>Test 🧨 🧨 🧨 🧨</p>
       <SSGComponent />
+      {/* <SSRComponent /> */}
+      {/* <Suspense fallback={<p>Loading feed...</p>}>
+        <SSRComponent />
+      </Suspense> */}
+      
     </main>
   );
 }
